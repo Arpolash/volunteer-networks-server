@@ -30,7 +30,7 @@ client.connect(err => {
     const user = req.body;
     userCollection.insertOne(user)
     .then(result => {
-      res.redirect('http://localhost:3000/eventtasks')
+      res.redirect('https://volunteer-network-c9b8b.web.app/eventtasks')
     })
   })
 
