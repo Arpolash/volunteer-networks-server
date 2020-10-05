@@ -16,7 +16,7 @@ const MongoClient = require('mongodb').MongoClient;
 const uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PAS}@cluster0-shard-00-00.sjfoa.mongodb.net:27017,cluster0-shard-00-01.sjfoa.mongodb.net:27017,cluster0-shard-00-02.sjfoa.mongodb.net:27017/Volunteer?ssl=true&replicaSet=atlas-43pj5u-shard-0&authSource=admin&retryWrites=true&w=majority`
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology : true });
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello Volunteer!')
 })
 
 
