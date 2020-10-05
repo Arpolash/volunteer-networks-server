@@ -12,18 +12,13 @@ app.use(cors());
 const port = 5000;
 
 const MongoClient = require('mongodb').MongoClient;
-// const uri = "mongodb+srv://Rahman:dgdONSRizzVcNX3l@cluster0.sjfoa.mongodb.net/Volunteer?retryWrites=true&w=majority";
 const uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-shard-00-00.sjfoa.mongodb.net:27017,cluster0-shard-00-01.sjfoa.mongodb.net:27017,cluster0-shard-00-02.sjfoa.mongodb.net:27017/Volunteer?ssl=true&replicaSet=atlas-43pj5u-shard-0&authSource=admin&retryWrites=true&w=majority`
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology : true });
-app.get('/', (req, res) => {
-  res.send('Hello Volinteer!')
-})
 
 
 client.connect(err => {
   const collection = client.db(`${process.env.DB_DATABASE}`).collection(`${process.env.DB_COLLECTION}`);
   const userCollection = client.db(`${process.env.DB_DATABASE}`).collection(`${process.env.DB_COLLECTION2}`);
-  console.log('connected')
    app.get('/products',(req,res) =>{
      collection.find({})
      .toArray((err,document) =>{
@@ -57,8 +52,7 @@ client.connect(err => {
   app.delete('/delete/:id', (req, res) =>{
     userCollection.deleteOne({_id: ObjectId(req.params.id)})
     .then( result => {
-      // res.send(result.deletedCount > 0);
-      res.redirect('http://localhost:3000/eventtasks')
+      res.send(result.deletedCount > 0);
     })
   })
 });
