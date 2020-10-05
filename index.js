@@ -57,7 +57,8 @@ client.connect(err => {
   app.delete('/delete/:id', (req, res) =>{
     userCollection.deleteOne({_id: ObjectId(req.params.id)})
     .then( result => {
-      res.send(result.deletedCount > 0);
+      // res.send(result.deletedCount > 0);
+      res.redirect('http://localhost:3000/eventtasks')
     })
   })
 });
